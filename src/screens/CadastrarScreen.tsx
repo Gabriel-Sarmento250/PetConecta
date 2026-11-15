@@ -11,7 +11,7 @@ export default function CadastrarScreen({ navigation }: any) {
   const [descricao, setDescricao] = useState('');
   const [contato, setContato] = useState('');
   const [situacao, setSituacao] = useState<'Perdido' | 'Encontrado' | 'Adoção' | 'Adotado'>('Adoção');
-  const [midias, setMidias] = useState<Midia[]>([]); // Estado unificado
+  const [midias, setMidias] = useState<Midia[]>([]); 
   const [latitude, setLatitude] = useState<number | undefined>();
   const [longitude, setLongitude] = useState<number | undefined>();
   const [carregandoLocal, setCarregandoLocal] = useState(false);
@@ -23,9 +23,8 @@ export default function CadastrarScreen({ navigation }: any) {
       return;
     }
 
-    // Agora permite selecionar imagens E vídeos
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All, // Permite tudo
+      mediaTypes: ImagePicker.MediaTypeOptions.All, 
       allowsMultipleSelection: true,
       selectionLimit: 5,
       quality: 1,
@@ -128,9 +127,29 @@ export default function CadastrarScreen({ navigation }: any) {
           />
         )}
 
-        <TextInput style={styles.input} placeholder="Nome do Pet" value={nome} onChangeText={setNome} />
-        <TextInput style={styles.input} placeholder="Descrição" value={descricao} onChangeText={setDescricao} multiline />
-        <TextInput style={styles.input} placeholder="Contato (telefone ou email)" value={contato} onChangeText={setContato} keyboardType="email-address" />
+        <TextInput 
+          style={styles.input} 
+          placeholder="Nome do Pet" 
+          placeholderTextColor="#999" 
+          value={nome} 
+          onChangeText={setNome} 
+        />
+        <TextInput 
+          style={styles.input} 
+          placeholder="Descrição" 
+          placeholderTextColor="#999" 
+          value={descricao} 
+          onChangeText={setDescricao} 
+          multiline 
+        />
+        <TextInput 
+          style={styles.input} 
+          placeholder="Contato (telefone ou email)" 
+          placeholderTextColor="#999" 
+          value={contato} 
+          onChangeText={setContato} 
+          keyboardType="email-address" 
+        />
 
         <Text style={styles.label}>Situação:</Text>
         <View style={styles.row}>
@@ -163,7 +182,18 @@ const styles = StyleSheet.create({
   fotoPreview: { width: 100, height: 100, borderRadius: 8 },
   btnRemoverFoto: { position: 'absolute', top: -5, right: -5, backgroundColor: 'red', borderRadius: 12, width: 24, height: 24, justifyContent: 'center', alignItems: 'center' },
   btnRemoverFotoText: { color: '#fff', fontSize: 12, fontWeight: 'bold' },
-  input: { backgroundColor: '#f9f9f9', borderWidth: 1, borderColor: '#ddd', borderRadius: 8, padding: 12, marginBottom: 15 },
+  
+  // AQUI ESTÁ A CORREÇÃO: Adicionado color: '#000'
+  input: { 
+    backgroundColor: '#f9f9f9', 
+    borderWidth: 1, 
+    borderColor: '#ddd', 
+    borderRadius: 8, 
+    padding: 12, 
+    marginBottom: 15,
+    color: '#000', // <-- Texto preto
+  },
+  
   label: { fontSize: 16, fontWeight: 'bold', marginBottom: 10 },
   row: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 },
   btnSituacao: { flex: 1, padding: 10, alignItems: 'center', backgroundColor: '#eee', borderRadius: 8, marginHorizontal: 2 },
